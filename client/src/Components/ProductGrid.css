@@ -1,0 +1,21 @@
+.a {
+    background-color: black; 
+    padding: 20px;
+    border-radius: 8px; 
+  }
+  
+  .a .MuiContainer-root {
+    background-color:lightgray; 
+    padding: 20px;
+    border-radius: 8px; 
+  }
+  
+  .MuiTypography-h4 {
+    color: white; 
+  }
+  
+  .MuiGrid-item {
+    padding: 10px; 
+  }
+  
+    

@@ -1,0 +1,25 @@
+.product-card {
+    transition: transform 0.2s;
+  }
+  
+.product-card:hover {
+    transform: scale(1.05);
+  } 
+  
+
+  /* ProductCard.css */
+
+.product-card {
+  width: 100%; /* Full width of the Grid item */
+  max-width: 300px; /* Maximum width of the card */
+  height: 430px; /* Fixed height of the card */
+  display: flex;
+  flex-direction: column; /* Ensure content is stacked vertically */
+  justify-content: space-between; /* Space out the content */
+}
+
+.product-image {
+  width: 100%; /* Full width of the card */
+  height: 60%; /* Adjust height as needed */
+  object-fit: cover; /* Ensure the image covers the area */
+}
