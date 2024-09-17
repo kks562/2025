@@ -7,7 +7,7 @@ import ProductDetails from './Components/ProductDetails';
 import About from './Components/About';
 import Contact from './Components/Contact';
 import Cart from './Components/Cart';
-import Payment from './Components/Payment';
+import Register from './Components/Register';
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
           <Route path='/about' element={<About/>} />
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/cart' element={<Cart/>}/>
-          <Route path='/payment' element={<Payment/>}/>
+          <Route path='/register' element={<Register/>}/>
         </Routes>
       </div>
     </Router>

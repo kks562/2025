@@ -12,30 +12,28 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();  
-
-  const register = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://localhost:3000/register", { email, password });
-      alert('Registration successful');
-    } catch (error) {
-      console.log('Registration failed:', error);
-    }
-  };
-
   const login = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/login", { email, password });
+      const response = await axios.post("http://localhost:3001/login", { email, password });
       if (response.data) {
+        // Store the token in localStorage
+        localStorage.setItem('token', response.data.accessToken);
+  
+        // Optionally, store user info as well, if needed
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+  
+        // Navigate to the home page after login
         navigate('/home'); 
       }
     } catch (error) {
-        alert('Invalid email or password');
-      }
-      
-  }
-
+      alert('Invalid email or password');
+    }
+  };
+  
+const register1=()=>{
+  navigate('/register');
+}
   return (
     <div>
       <section>
@@ -67,9 +65,9 @@ const Login = () => {
               </label>
               <a href="#">Forgot password?</a>
             </div>
-            <button type="submit" className='bt' onClick={login}>Login</button>
+            <button type="submit" className='bt'>Login</button>
             <div className="register">
-              <p>Don't have an account? <a href="#" onClick={register}>Register</a></p>
+              <p>Don't have an account? <a href="#" onClick={register1}>Register</a></p>
             </div>
           </form>
         </div>

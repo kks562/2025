@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Container, Grid, Typography, Button } from '@mui/material';
+import { Container, Grid, Typography, Button, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { IonIcon } from '@ionic/react';
 import { cartOutline, arrowBack } from 'ionicons/icons';
+import './ProjectDetails.css';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const ProductDetails = () => {
   const [itemlength, setItemlength] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/perfumes')
+    axios.get('http://localhost:3001/perfumes')
       .then(response => {
         const fetchedProduct = response.data.perfumes.find(p => String(p.id) === String(id));
         if (fetchedProduct) {
@@ -34,21 +35,29 @@ const ProductDetails = () => {
 
   const handleClick = () => {
     if (product) {
-      setAnimateCartIcon(true);
-      setTimeout(() => setAnimateCartIcon(false), 500);
-      axios.post('http://localhost:3000/cart', {
-        image: product.image,
-        name: product.name,
-        price: product.price
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+       setAnimateCartIcon(true);
+       setTimeout(() => setAnimateCartIcon(false), 500);
+ 
+       const token = localStorage.getItem('token'); // Get token from localStorage
+ 
+       axios.post('http://localhost:3001/cart', {
+          image: product.image,
+          name: product.name,
+          price: product.price
+       }, {
+          headers: {
+             Authorization: `Bearer ${token}` // Include the token in Authorization header
+          }
+       })
+       .then(response => {
+          console.log(response);
+       })
+       .catch(error => {
+          console.error(error);
+       });
     }
-  };
+ };
+ 
 
   const handleBuyNow = () => {
     if (product) {
@@ -95,68 +104,65 @@ const ProductDetails = () => {
 
   return (
     product && (
-      <Container>
+      <Container maxWidth="lg" sx={{ padding: '20px' }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <motion.img
-              src={product.image}
-              alt={product.name}
-              style={{ width: '100%', height: 'auto', maxWidth: '800px', margin: 'auto', position: 'relative', top: '130px', right: '120px' }}
-              initial={{ opacity: 0, x: -900 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            />
+          <motion.img
+  src={product.image}
+  alt={product.name}
+  className="image-default"
+  initial={{ opacity: 0, x: -900 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.9 }}
+/>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div style={{ position: 'relative' }}>
+            <Box sx={{ position: 'relative', marginBottom: '20px' }}>
               <IonIcon
                 icon={arrowBack}
                 style={{
                   position: 'absolute',
-                  top: '40px',
-                  right: '1250px',
-                  fontSize: '38px',
+                  top: '10px',
+                  left: '10px',
+                  fontSize: '30px',
                   color: 'black',
                   cursor: 'pointer'
                 }}
                 onClick={gotoproduct}
               />
               <motion.div
-                style={{ position: 'relative', width: '100%', maxWidth: '600px' }}
+                style={{ position: 'relative', marginLeft: 'auto', width: 'max-content' }}
                 animate={animateCartIcon ? { scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] } : {}}
                 transition={{ duration: 0.5 }}
               >
                 <IonIcon
                   icon={cartOutline}
                   style={{
-                    position: 'absolute',
-                    top: '49px',
-                    fontSize: '38px',
-                    left: '600px',
+                    fontSize: '30px',
                     color: 'black',
                     cursor: 'pointer'
                   }}
                   onClick={retrieve}
                 >{itemlength}</IonIcon>
               </motion.div>
-            </div>  
-            <Typography variant="h4" sx={{ color: 'black', mb: 2, position: 'relative', top: '60px', left: '130px', fontSize: '55px' }}>
+            </Box>
+            <Typography variant="h4" sx={{ color: 'black', mb: 2, fontSize: { xs: '24px', md: '36px' }, fontWeight: 'bold' }}>
               {product.name}
             </Typography>
-            <Typography variant="h6" sx={{ color: 'black', mb: 2, position: 'relative', top: '60px', left: '130px', fontSize: '40px' }}>
+            <Typography variant="h6" sx={{ color: 'black', mb: 2, fontSize: { xs: '18px', md: '28px' } }}>
               {product.brand}
             </Typography>
-            <Typography variant="body1" paragraph sx={{ color: 'black', mb: 2, position: 'relative', top: '60px', left: '130px', fontSize: '20px' }}>
+            <Typography variant="body1" paragraph sx={{ color: 'black', mb: 2, fontSize: { xs: '14px', md: '18px' } }}>
               {product.description}
             </Typography>
-            <Typography variant="h5" sx={{ color: 'black', mb: 2, position: 'relative', top: '60px', left: '130px', fontSize: '40px', fontWeight: 'bold' }}>
+            <Typography variant="h5" sx={{ color: 'black', mb: 2, fontSize: { xs: '20px', md: '32px' }, fontWeight: 'bold' }}>
               ₹{product.price}
             </Typography>
-            <Typography variant="body1" sx={{ color: 'black', mb: 2, position: 'relative', top: '60px', left: '130px', fontSize: '25px' }} dangerouslySetInnerHTML={{ __html: product.Highlights }} />
+            <Typography variant="body1" sx={{ color: 'black', mb: 2, fontSize: { xs: '14px', md: '18px' } }} dangerouslySetInnerHTML={{ __html: product.Highlights }} />
             <Button
               variant="contained"
               color="primary"
-              sx={{ backgroundColor: 'Orange', mb: 2, width: '100%', position: 'relative', top: '60px', left: '130px', padding: '20px', fontSize: '23px' }}
+              sx={{ backgroundColor: 'orange', mb: 2, width: '100%', padding: { xs: '10px', md: '20px' }, fontSize: { xs: '16px', md: '23px' } }}
               onClick={handleClick}
             >
               Add to Cart
@@ -164,7 +170,7 @@ const ProductDetails = () => {
             <Button
               variant="contained"
               color="secondary"
-              sx={{ backgroundColor: 'orangered', width: '100%', position: 'relative', top: '60px', left: '130px', padding: '20px', fontSize: '23px' }}
+              sx={{ backgroundColor: 'orangered', width: '100%', padding: { xs: '10px', md: '20px' }, fontSize: { xs: '16px', md: '23px' } }}
               onClick={handleBuyNow}
             >
               Buy Now

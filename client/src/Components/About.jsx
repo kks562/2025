@@ -42,14 +42,19 @@ const About = () => {
           <h2>Meet Our Team</h2>
           <div className="team-members">
             <div className="team-member">
-              <img src="path/to/team-member1.jpg" alt="Team Member 1" />
-              <h3>Jane Doe</h3>
-              <p>Founder & Master Perfumer</p>
+              <img src="path/to/team-member1.jpg" alt="Kavin Krishna S" />
+              <h3>Kavin Krishna S</h3>
+              <p>Web Developer</p>
             </div>
             <div className="team-member">
-              <img src="path/to/team-member2.jpg" alt="Team Member 2" />
-              <h3>John Smith</h3>
-              <p>Creative Director</p>
+              <img src="path/to/team-member2.jpg" alt="Mithilesh K" />
+              <h3>Mithilesh K</h3>
+              <p>Frontend Developer</p>
+            </div>
+            <div className="team-member">
+              <img src="path/to/team-member3.jpg" alt="Nithish Kumar R" />
+              <h3>Nithish Kumar R</h3>
+              <p>Backend Developer</p>
             </div>
           </div>
         </div>

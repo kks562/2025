@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
         <CardContent>
           <Typography variant="h6">{product.name}</Typography>
           <Typography variant="subtitle2" color="textSecondary">{product.brand}</Typography>
-          <Typography variant="h6">{product.price}</Typography>
+          <Typography variant="h6">₹{product.price}</Typography>
           <Button variant="contained" color="primary">Quick View</Button>
         </CardContent>
       </Card>

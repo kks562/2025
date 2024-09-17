@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { IonIcon } from '@ionic/react';
-import { cartOutline, personCircleOutline } from 'ionicons/icons';
+import { cartOutline, personCircleOutline, menuOutline } from 'ionicons/icons';
 import image from '../src/assets/b.png'
 import arrowImage from '../src/assets/arrow_btn.png'
 import './Home.css';
@@ -17,6 +17,7 @@ const Home = () => {
 
     const [count, setCount] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate(); 
 
     const handleCategoryClick = (category) => {
@@ -26,27 +27,33 @@ const Home = () => {
 
     const handleViewProducts = () => {
         navigate('/products', { state: { selectedCategory } });
-        
     };
-   const gotoAbout=()=>{
-    navigate(`/about`);
-   }
 
-   const gotoContact=()=>{
-    navigate(`/contact`);
-   }
-   const gotologin=()=>{
-    navigate(`/`);
-   }
-   const gotocart=()=>{
-    navigate(`/cart`);
-   }
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const gotoAbout=()=>{
+        navigate(`/about`);
+    };
+
+    const gotoContact=()=>{
+        navigate(`/contact`);
+    };
+
+    const gotologin=()=>{
+        navigate(`/`);
+    };
+
+    const gotocart=()=>{
+        navigate(`/cart`);
+    };
+
     return (
         <>
             <div className="navbar">
                 <img src={image} alt="Logo" />
-                <ul>
-            
+                <ul className={menuOpen ? 'open' : ''}>
                     <li onClick={() => handleCategoryClick('Men')}>Mens</li>
                     <li onClick={() => handleCategoryClick('Women')}>Womens</li>
                     <li onClick={() => handleCategoryClick('Unisex')}>Unisex</li>
@@ -56,6 +63,7 @@ const Home = () => {
                 <div className="icon">
                     <IonIcon icon={cartOutline} onClick={gotocart}/>
                     <IonIcon icon={personCircleOutline} onClick={gotologin}/>
+                    <IonIcon icon={menuOutline} onClick={toggleMenu} className="menu-icon"/>
                 </div>
             </div>
             <div className="img">

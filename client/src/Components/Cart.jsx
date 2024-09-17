@@ -19,7 +19,13 @@ const Cart = () => {
   };
 
   const fetchCartItems = () => {
-    axios.get('http://localhost:3000/read')
+    const token = localStorage.getItem('token'); // Get token from localStorage
+  
+    axios.get('http://localhost:3001/read', {
+      headers: {
+        Authorization: `Bearer ${token}` // Send the token in the request header
+      }
+    })
       .then(response => {
         setCartItems(response.data);
         console.log('Fetched cart items:', response.data); 
@@ -28,9 +34,16 @@ const Cart = () => {
         console.error('Error fetching cart items:', error);
       });
   };
+  
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3000/cart/${id}`)
+    const token = localStorage.getItem('token'); // Get token from localStorage
+  
+    axios.delete(`http://localhost:3001/cart/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}` // Include token in Authorization header
+      }
+    })
       .then(() => {
         const updatedCartItems = cartItems.filter(item => item._id !== id);
         setCartItems(updatedCartItems);
@@ -40,6 +53,8 @@ const Cart = () => {
         console.error('Error deleting item:', error);
       });
   };
+  
+  
 
   const calculateTotalPrice = () => {
     const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price), 0);
@@ -68,7 +83,7 @@ const Cart = () => {
       },
       prefill: {
         name: "mithilesh",
-        email: "kmithilesh5669@gmail.com",
+        email: "kmithilesh5669@gmail.com",  
         contact: "8778855348"
       },
       note: {
@@ -96,7 +111,7 @@ const Cart = () => {
               color: 'white',   
               cursor: 'pointer'
             }}
-       onClick={gotoproducts}   />
+          />
         </Button>
         <IonIcon
           icon={cartOutline}

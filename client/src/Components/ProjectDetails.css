@@ -1,0 +1,18 @@
+.image-default {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    margin: 0;
+    position: relative;
+    top: 100px;
+    right: 100px;
+  }
+  
+  @media (max-width: 900px) {
+    .image-default {
+      top: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+  

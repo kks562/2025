@@ -20,7 +20,7 @@ const ProductGrid = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/perfumes')
+    axios.get('http://localhost:3001/perfumes')
       .then(response => {
         setPerfumes(response.data.perfumes);
         setLoading(false);
