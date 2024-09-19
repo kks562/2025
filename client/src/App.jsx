@@ -8,7 +8,6 @@ import About from './Components/About';
 import Contact from './Components/Contact';
 import Cart from './Components/Cart';
 import Register from './Components/Register';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 
 const App = () => {
   return (
