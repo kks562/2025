@@ -4,12 +4,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    rollupOptions: {
-      external: [
-        '@fortawesome/fontawesome-svg-core',
-        '@fortawesome/free-solid-svg-icons',
-        '@fortawesome/react-fontawesome'
-      ],
-    },
+    target: 'esnext', // Optional, targets modern browsers
+    // No need for external if FontAwesome is bundled correctly
   },
 });
