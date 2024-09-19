@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Register.css';
 import video from '../assets/pern2.mp4';
 import logo from '../assets/b.png';
-import { IonIcon } from '@ionic/react';
-import { personSharp, mailSharp, lockClosedSharp, checkmarkCircleSharp } from 'ionicons/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -40,7 +41,7 @@ const Register = () => {
             <h2>Register</h2>
             <div className="input-box">
               <span className="icon">
-                <IonIcon icon={personSharp} />
+              <FontAwesomeIcon icon={faUser} />
               </span>
               <input
                 type="text"
@@ -52,7 +53,7 @@ const Register = () => {
             </div>
             <div className="input-box">
               <span className="icon">
-                <IonIcon icon={mailSharp} />
+              <FontAwesomeIcon icon={faEnvelope} />
               </span>
               <input
                 type="email"
@@ -64,7 +65,7 @@ const Register = () => {
             </div>
             <div className="input-box">
               <span className="icon">
-                <IonIcon icon={lockClosedSharp} />
+              <FontAwesomeIcon icon={faLock} />
               </span>
               <input
                 type="password"
@@ -84,8 +85,8 @@ const Register = () => {
               transition={{ duration: 0.5 }}
             >
               Registration successful! 
-              <IonIcon icon={checkmarkCircleSharp} className="success-icon" />
-            </motion.div>
+              <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
+              </motion.div>
           )}
         </div>
       </section>

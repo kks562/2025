@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import ProductCard from './ProductCard';
 import './ProductGrid.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { IonIcon } from '@ionic/react';
-import { arrowBack } from 'ionicons/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
 const ProductGrid = () => {
   const location = useLocation();
@@ -55,8 +55,8 @@ const ProductGrid = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 3 }}
       >
-        <IonIcon
-          icon={arrowBack}
+        <FontAwesomeIcon
+                icon={faArrowLeft}
           style={{
             position: 'absolute',
             top: '40px',

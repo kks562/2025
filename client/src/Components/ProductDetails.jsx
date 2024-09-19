@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Grid, Typography, Button, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { IonIcon } from '@ionic/react';
-import { cartOutline, arrowBack } from 'ionicons/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './ProjectDetails.css';
 
 const ProductDetails = () => {
@@ -118,8 +118,8 @@ const ProductDetails = () => {
           </Grid>
           <Grid item xs={12} md={6}>
             <Box sx={{ position: 'relative', marginBottom: '20px' }}>
-              <IonIcon
-                icon={arrowBack}
+            <FontAwesomeIcon
+                icon={faArrowLeft}
                 style={{
                   position: 'absolute',
                   top: '10px',
@@ -135,15 +135,15 @@ const ProductDetails = () => {
                 animate={animateCartIcon ? { scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] } : {}}
                 transition={{ duration: 0.5 }}
               >
-                <IonIcon
-                  icon={cartOutline}
+                <FontAwesomeIcon
+                  icon={faShoppingCart}
                   style={{
                     fontSize: '30px',
                     color: 'black',
                     cursor: 'pointer'
                   }}
                   onClick={retrieve}
-                >{itemlength}</IonIcon>
+                />{itemlength}
               </motion.div>
             </Box>
             <Typography variant="h4" sx={{ color: 'black', mb: 2, fontSize: { xs: '24px', md: '36px' }, fontWeight: 'bold' }}>

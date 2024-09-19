@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Grid, Card, CardMedia, CardContent, Typography, Button, CardActions, AppBar, Toolbar } from '@mui/material';
 import { motion } from 'framer-motion';
-import { IonIcon } from '@ionic/react';
-import { cartOutline, arrowBack } from 'ionicons/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -102,8 +102,8 @@ const Cart = () => {
     <div>
       <AppBar position="sticky" sx={{ backgroundColor: 'black' }}>
         <Button onClick={gotoproducts} sx={{ position: 'absolute', top: '15px', left: '20px', minWidth: 'auto' }}>
-          <IonIcon
-            icon={arrowBack}
+        <FontAwesomeIcon icon={faArrowLeft} 
+
             style={{
               fontSize: '50px',
               position:'relative',
@@ -113,8 +113,7 @@ const Cart = () => {
             }}
           />
         </Button>
-        <IonIcon
-          icon={cartOutline}
+        <FontAwesomeIcon icon={faShoppingCart} 
           style={{
             position: 'absolute',
             top: '13px',

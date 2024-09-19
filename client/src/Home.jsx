@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { IonIcon } from '@ionic/react';
-import { cartOutline, personCircleOutline, menuOutline } from 'ionicons/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faUserCircle, faBars } from '@fortawesome/free-solid-svg-icons';
 import image from '../src/assets/b.png'
 import arrowImage from '../src/assets/arrow_btn.png'
 import './Home.css';
@@ -61,9 +61,12 @@ const Home = () => {
                     <li onClick={gotoContact}>Contact</li>
                 </ul>
                 <div className="icon">
-                    <IonIcon icon={cartOutline} onClick={gotocart}/>
-                    <IonIcon icon={personCircleOutline} onClick={gotologin}/>
-                    <IonIcon icon={menuOutline} onClick={toggleMenu} className="menu-icon"/>
+                <FontAwesomeIcon icon={faCartShopping} onClick={gotocart}className="fa-icon" />
+<FontAwesomeIcon icon={faUserCircle} onClick={gotologin} className="fa-icon" />
+<FontAwesomeIcon icon={faBars} onClick={toggleMenu} className="menu-icon fa-icon" />
+
+
+
                 </div>
             </div>
             <div className="img">
