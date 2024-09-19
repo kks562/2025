@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faUserCircle, faBars } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCartShopping, faUserCircle, faBars } from '@fortawesome/free-solid-svg-icons';
 import image from '../src/assets/b.png'
 import arrowImage from '../src/assets/arrow_btn.png'
 import './Home.css';
@@ -61,9 +61,9 @@ const Home = () => {
                     <li onClick={gotoContact}>Contact</li>
                 </ul>
                 <div className="icon">
-                <FontAwesomeIcon icon={faCartShopping} onClick={gotocart}className="fa-icon" />
+                {/* <FontAwesomeIcon icon={faCartShopping} onClick={gotocart}className="fa-icon" />
 <FontAwesomeIcon icon={faUserCircle} onClick={gotologin} className="fa-icon" />
-<FontAwesomeIcon icon={faBars} onClick={toggleMenu} className="menu-icon fa-icon" />
+<FontAwesomeIcon icon={faBars} onClick={toggleMenu} className="menu-icon fa-icon" /> */}
 
 
 

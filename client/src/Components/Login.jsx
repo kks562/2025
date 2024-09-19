@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './Login.css';
 import video from '../assets/pern2.mp4';
 import image from '../assets/b.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';  
 
@@ -47,14 +47,14 @@ const register1=()=>{
             <h2>Login</h2>
             <div className="input-box">
               <span className="icon">
-              <FontAwesomeIcon icon={faEnvelope} />
+              {/* <FontAwesomeIcon icon={faEnvelope} /> */}
               </span>
               <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
               <label>Email</label>
             </div>
             <div className="input-box">
               <span className="icon">
-              <FontAwesomeIcon icon={faLock} />
+              {/* <FontAwesomeIcon icon={faLock} /> */}
               </span>
               <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
               <label>Password</label>

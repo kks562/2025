@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Grid, Card, CardMedia, CardContent, Typography, Button, CardActions, AppBar, Toolbar } from '@mui/material';
 import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -102,7 +102,7 @@ const Cart = () => {
     <div>
       <AppBar position="sticky" sx={{ backgroundColor: 'black' }}>
         <Button onClick={gotoproducts} sx={{ position: 'absolute', top: '15px', left: '20px', minWidth: 'auto' }}>
-        <FontAwesomeIcon icon={faArrowLeft} 
+        {/* <FontAwesomeIcon icon={faArrowLeft}  */}
 
             style={{
               fontSize: '50px',
@@ -111,9 +111,9 @@ const Cart = () => {
               color: 'white',   
               cursor: 'pointer'
             }}
-          />
+          
         </Button>
-        <FontAwesomeIcon icon={faShoppingCart} 
+        {/* <FontAwesomeIcon icon={faShoppingCart}  */}
           style={{
             position: 'absolute',
             top: '13px',
@@ -122,7 +122,7 @@ const Cart = () => {
             color: 'white',
             cursor: 'pointer'
           }}
-        />
+        
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h6" sx={{ color: 'white', flexGrow: 1, textAlign: 'center', position: 'relative', left: '110px', fontSize: '40px' }}>
             Cart
