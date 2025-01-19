@@ -6,7 +6,12 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const CartItem = require('./models/CartItem');
-app.use(cors());
+app.use(cors({
+    origin: 'https://admirable-biscotti-fba77f.netlify.app', // Replace with the correct frontend URL
+    methods: ['GET', 'POST', 'DELETE'],
+    credentials: true
+}));
+
 require('dotenv').config();
 
 app.use(express.json());
@@ -122,5 +127,5 @@ app.delete('/cart/:id', authenticateToken, (req, res) => {
     
     
 app.listen(3001, () => {
-    console.log('Server running on port 3000');
+    console.log('Server running on port 3001');
 });

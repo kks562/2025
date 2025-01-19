@@ -13,8 +13,16 @@ section {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    position: relative;
+    position: relative; /* Ensure this is set */
     overflow: hidden;
+}
+
+.logo {
+    position: absolute; /* Positioning the logo absolutely */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    width: 250px; /* Set the width of the logo */
+    height: auto; /* Maintain aspect ratio */
 }
 
 #background-video {
@@ -27,18 +35,11 @@ section {
     z-index: -1;
 }
 
-.logo {
-    position: absolute;
-    top: 20px;
-    left: 1200px; 
-    width: 250px;
-    height: auto;
-}
+
 
 .login-box {
     position: relative;
     top: -50px;
-    left: -460px;
     width: 400px;
     height: 450px;
     border-radius: 20px;
@@ -48,7 +49,7 @@ section {
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(1px);
-    box-shadow: 0 4px 30px rgb(255, 215, 0,0.9); 
+    box-shadow: 0 4px 30px rgb(255, 215, 0, 0.9); 
     z-index: 1;
     padding: 20px;
     margin: 20px !important;
@@ -65,7 +66,7 @@ form h2 {
     color: #fff;
     text-align: center;
     position: relative;
-    top:19px;
+    top: 19px;
     letter-spacing: 4px;
 }
 
@@ -95,9 +96,9 @@ form h2 {
 
 .input-box input:focus,
 .input-box input:valid {
-  background: transparent; 
-  border-bottom: 2px solid #fff; 
-  color: #fff;
+    background: transparent; 
+    border-bottom: 2px solid #fff; 
+    color: #fff;
 }
 
 .input-box input {
@@ -169,15 +170,14 @@ form h2 {
 .register p a:hover {
     text-decoration: underline;
 }
+
+/* Responsive Styles */
 @media (max-width: 768px) {
     .logo {
-        left: auto; 
         width: 200px;  
     }
 
     .login-box {
-        top: auto;
-        left: auto;
         width: 90%;
         max-width: 350px;
         height: auto;
@@ -206,13 +206,10 @@ form h2 {
 
 @media (max-width: 480px) {
     .logo {
-        left: auto; 
         width: 150px;
     }
 
     .login-box {
-        top: auto;
-        left: auto;
         width: 90%;
         max-width: 300px;
         padding: 15px;

@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Grid, Card, CardMedia, CardContent, Typography, Button, CardActions, AppBar, Toolbar } from '@mui/material';
+import {
+  Container,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+  CardActions,
+  AppBar,
+  Toolbar,
+} from '@mui/material';
 import { motion } from 'framer-motion';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -19,47 +30,43 @@ const Cart = () => {
   };
 
   const fetchCartItems = () => {
-    const token = localStorage.getItem('token'); // Get token from localStorage
-  
-    axios.get('http://localhost:3001/read', {
-      headers: {
-        Authorization: `Bearer ${token}` // Send the token in the request header
-      }
-    })
-      .then(response => {
-        setCartItems(response.data);
-        console.log('Fetched cart items:', response.data); 
+    const token = localStorage.getItem('token');
+    axios
+      .get('https://two025-ln5f.onrender.com/read', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch(error => {
+      .then((response) => {
+        setCartItems(response.data);
+      })
+      .catch((error) => {
         console.error('Error fetching cart items:', error);
       });
   };
-  
 
   const handleDelete = (id) => {
-    const token = localStorage.getItem('token'); // Get token from localStorage
-  
-    axios.delete(`http://localhost:3001/cart/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${token}` // Include token in Authorization header
-      }
-    })
-      .then(() => {
-        const updatedCartItems = cartItems.filter(item => item._id !== id);
-        setCartItems(updatedCartItems);
-        console.log('Updated cart items after delete:', updatedCartItems); 
+    const token = localStorage.getItem('token');
+    axios
+      .delete(`https://two025-ln5f.onrender.com/cart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch(error => {
+      .then(() => {
+        const updatedCartItems = cartItems.filter((item) => item._id !== id);
+        setCartItems(updatedCartItems);
+
+        const newItemLength = updatedCartItems.length;
+        localStorage.setItem('itemlength', newItemLength);
+      })
+      .catch((error) => {
         console.error('Error deleting item:', error);
       });
   };
-  
-  
 
   const calculateTotalPrice = () => {
-    const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price), 0);
-    console.log('Total price:', totalPrice);
-    return totalPrice;
+    return cartItems.reduce((total, item) => total + parseFloat(item.price), 0);
   };
 
   const handleSubmit = (e) => {
@@ -71,82 +78,56 @@ const Cart = () => {
       return;
     }
 
-    var options = {
-      key: "rzp_test_4hlUjhjcvWV9yq", 
-      key_secret: "BNK1J4bpTtkFKGOsJobO6qsu", 
-      amount: totalPrice * 100, 
-      currency: "INR",
-      name: "Test User",
-      description: "Test Transaction",
-      handler: function(response) {
+    const options = {
+      key: 'rzp_test_4hlUjhjcvWV9yq',
+      key_secret: 'BNK1J4bpTtkFKGOsJobO6qsu',
+      amount: totalPrice * 100,
+      currency: 'INR',
+      name: 'Test User',
+      description: 'Test Transaction',
+      handler: function (response) {
         alert('Payment ID: ' + response.razorpay_payment_id);
       },
       prefill: {
-        name: "mithilesh",
-        email: "kmithilesh5669@gmail.com",  
-        contact: "8778855348"
+        name: 'mithilesh',
+        email: 'kmithilesh5669@gmail.com',
+        contact: '8778855348',
       },
-      note: {
-        address: "Razorpay Corporate office"
+      notes: {
+        address: 'Razorpay Corporate office',
       },
       theme: {
-        color: "#1487c4"
-      }
+        color: '#1487c4',
+      },
     };
 
-    var pay = new window.Razorpay(options);
-    pay.open();
+    if (window.Razorpay) {
+      const pay = new window.Razorpay(options);
+      pay.open();
+    } else {
+      alert('Razorpay SDK is not loaded.');
+    }
   };
 
   return (
     <div>
       <AppBar position="sticky" sx={{ backgroundColor: 'black' }}>
-        <Button onClick={gotoproducts} sx={{ position: 'absolute', top: '15px', left: '20px', minWidth: 'auto' }}>
-        {/* <FontAwesomeIcon icon={faArrowLeft}  */}
-
-            style={{
-              fontSize: '50px',
-              position:'relative',
-              top:'-10px',
-              color: 'white',   
-              cursor: 'pointer'
-            }}
-          
-        </Button>
-        {/* <FontAwesomeIcon icon={faShoppingCart}  */}
-          style={{
-            position: 'absolute',
-            top: '13px',
-            right: '728px',
-            fontSize: '38px',
-            color: 'white',
-            cursor: 'pointer'
-          }}
-        
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6" sx={{ color: 'white', flexGrow: 1, textAlign: 'center', position: 'relative', left: '110px', fontSize: '40px' }}>
-            Cart
-          </Typography>
-          <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold', background: 'linear-gradient(to right, #ff7e5f, #feb47b)', padding: '5px 10px', borderRadius: '5px', position: 'relative', right: '50px' }}>
-            Total Price: ₹{calculateTotalPrice().toFixed(2)}
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={handleSubmit}
+        <Toolbar>
+          <Button onClick={gotoproducts} sx={{ color: 'white' }}>
+            <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '24px' }} />
+          </Button>
+          <Typography
+            variant="h6"
             sx={{
-              width: '150px',
-              padding: '13px',
-              fontWeight: '600',
-              letterSpacing: '2px',
-              background: 'linear-gradient(to right, #ff416c, #ff4b2b)', // Gradient colors
-              color: 'white',
-              '&:hover': {
-                background: 'linear-gradient(to right, #ff4b2b, #ff416c)', // Reverse gradient on hover
-              }
+              flexGrow: 1,
+              textAlign: 'center',
+              fontSize: '24px',
+              fontWeight: 'bold',
             }}
           >
-            Checkout
-          </Button>
+            Cart
+          </Typography>
+          <FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: '24px', color: 'white' }} />
         </Toolbar>
       </AppBar>
       <Container sx={{ marginTop: '20px' }}>
@@ -169,7 +150,7 @@ const Cart = () => {
                       alt={item.name}
                     />
                     <CardContent>
-                      <Typography variant="h6">{item.name}</Typography> 
+                      <Typography variant="h6">{item.name}</Typography>
                       <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                         Price: ₹{item.price}
                       </Typography>
@@ -179,7 +160,7 @@ const Cart = () => {
                         variant="contained"
                         color="secondary"
                         onClick={() => handleDelete(item._id)}
-                        style={{ alignItems: 'center', position: 'relative', left: '80px', bottom: '17px' }}
+                        sx={{ marginLeft: 'auto' }}
                       >
                         Delete
                       </Button>
@@ -190,6 +171,25 @@ const Cart = () => {
             ))}
           </Grid>
         )}
+        <Typography variant="h5" sx={{ textAlign: 'center', marginTop: '20px' }}>
+          Total Price: ₹{calculateTotalPrice().toFixed(2)}
+        </Typography>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          sx={{
+            display: 'block',
+            margin: '20px auto',
+            padding: '10px 30px',
+            background: 'linear-gradient(to right, #ff416c, #ff4b2b)',
+            color: 'white',
+            '&:hover': {
+              background: 'linear-gradient(to right, #ff4b2b, #ff416c)',
+            },
+          }}
+        >
+          Checkout
+        </Button>
       </Container>
     </div>
   );

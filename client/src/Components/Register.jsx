@@ -19,7 +19,7 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/register", { name, email, password });
+      await axios.post("https://two025-ln5f.onrender.com/register", { name, email, password });
       setIsRegistered(true);
       setTimeout(() => navigate('/home'), 2000);
 
